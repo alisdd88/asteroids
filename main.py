@@ -46,11 +46,16 @@ def main():
         # Draw the player
         for obj in drawable:
             obj.draw(screen)
-        # Check collision
+        # Check player collision
         for obj in asteroids:
             if obj.collide(player):
                 # print("Game over!")
                 sys.exit("Game over!")
+        # Check bullet collision
+        for asteroid in asteroids:
+            for bullet in shots:
+                if asteroid.collide(bullet):
+                    asteroid.split()
         # Refresh the screen
         pygame.display.flip()
         dt = clock.tick(60)
